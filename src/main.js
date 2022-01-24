@@ -32,8 +32,8 @@ let pyProc = null;
 const pyPort = "5000";
 
 const guessPackaged = () => {
-  const unixPath = path.join(process.resourcesPath, PY_DIST_FOLDER, PY_MODULE, PY_MODULE);
-  const winPath = path.join(process.resourcesPath, PY_DIST_FOLDER, PY_MODULE, PY_MODULE + ".exe");
+  const unixPath = path.join(process.resourcesPath, PY_MODULE);
+  const winPath = path.join(process.resourcesPath, PY_MODULE + ".exe");
 
   if (require("fs").existsSync(unixPath) || require("fs").existsSync(winPath)) {
     return true;
@@ -49,12 +49,12 @@ const getScriptPath = () => {
   }
 
   if (process.platform === "win32") {
-    console.log("Using  executable api")
-    log.info( path.join(process.resourcesPath, PY_DIST_FOLDER, PY_MODULE, PY_MODULE + ".exe"))
-    return  path.join(process.resourcesPath, PY_DIST_FOLDER, PY_MODULE, PY_MODULE + ".exe");
+    // console.log("Using  executable api")
+    // log.info( path.join(process.resourcesPath, PY_MODULE + ".exe"))
+    return  path.join(process.resourcesPath, PY_MODULE + ".exe");
   }
 
-  return path.join(process.resourcesPath, PY_DIST_FOLDER, PY_MODULE, PY_MODULE);
+  return path.join(process.resourcesPath, PY_MODULE);
 };
 
 // create the python process

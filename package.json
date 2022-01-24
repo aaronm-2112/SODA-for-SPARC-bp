@@ -19,7 +19,7 @@
       "buildResources": "resources"
     },
     "extraResources": [
-      "pyflaskdist/**/*"
+      "api.exe"
     ],
     "publish": null
   },
