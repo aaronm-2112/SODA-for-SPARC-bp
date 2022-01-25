@@ -14,6 +14,11 @@ import createWindow from "./helpers/window";
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 import env from "env";
+import { DynamicEntryPlugin } from "webpack";
+
+
+const log = require('electron-log')
+
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -49,9 +54,8 @@ const getScriptPath = () => {
   }
 
   if (process.platform === "win32") {
-    // console.log("Using  executable api")
-    // log.info( path.join(process.resourcesPath, PY_MODULE + ".exe"))
-    return  path.join(process.resourcesPath, PY_MODULE + ".exe");
+    log.info(path.join(process.resourcesPath, PY_MODULE + ".exe"))
+    return path.join(process.resourcesPath, PY_MODULE + ".exe");
   }
 
   return path.join(process.resourcesPath, PY_MODULE);
@@ -164,6 +168,16 @@ app.on("ready", () => {
   //f (env.name === "development") {
     mainWindow.openDevTools();
   //}
+
+  if(env.name === "production") {
+    let varName = "cheerios"
+    try{
+      throw new Error(`Problem with: `, varName)
+    } catch(e) {
+      log.error(e)
+      console.error(e)
+    }
+  }
 
   createPyProc()
 });

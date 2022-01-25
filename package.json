@@ -34,6 +34,7 @@
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
+    "electron-log": "^4.4.5",
     "fs-jetpack": "^4.1.0",
     "ps-tree": "^1.2.0"
   },
